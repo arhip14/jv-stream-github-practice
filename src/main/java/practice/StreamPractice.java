@@ -1,5 +1,6 @@
 package practice;
 
+import java.util.Arrays;
 import java.util.List;
 import model.Candidate;
 import model.Person;
@@ -13,7 +14,7 @@ public class StreamPractice {
      */
     public int findMinEvenNumber(List<String> numbers) {
         return numbers.stream()
-                .flatMap(str -> java.util.Arrays.stream(str.split(",")))
+                .flatMap(str -> Arrays.stream(str.split(",")))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .filter(n -> n % 2 == 0)
@@ -47,7 +48,7 @@ public class StreamPractice {
         return peopleList.stream()
                 .filter(p -> p.getSex() == Person.Sex.MAN)
                 .filter(p -> p.getAge() >= fromAge && p.getAge() <= toAge)
-                .collect(java.util.stream.Collectors.toList());
+                .toList();
     }
 
     /**
@@ -66,7 +67,7 @@ public class StreamPractice {
                 .filter(p -> p.getAge() >= fromAge)
                 .filter(p -> (p.getSex() == Person.Sex.MAN && p.getAge() <= maleToAge)
                           || (p.getSex() == Person.Sex.WOMAN && p.getAge() <= femaleToAge))
-                .collect(java.util.stream.Collectors.toList());
+                .toList();
     }
 
     /**
@@ -80,7 +81,7 @@ public class StreamPractice {
                 .filter(p -> p.getAge() >= femaleAge)
                 .flatMap(p -> p.getCats().stream())
                 .map(model.Cat::getName)
-                .collect(java.util.stream.Collectors.toList());
+                .toList();
     }
 
     /**
@@ -96,12 +97,12 @@ public class StreamPractice {
      * parametrized with Candidate in CandidateValidator.
      */
     public List<String> validateCandidates(List<Candidate> candidates) {
-        practice.CandidateValidator validator = new practice.CandidateValidator();
+        CandidateValidator validator = new CandidateValidator();
 
         return candidates.stream()
                 .filter(validator)
                 .map(Candidate::getName)
                 .sorted()
-                .collect(java.util.stream.Collectors.toList());
+                .toList();
     }
 }
