@@ -69,6 +69,7 @@ public class StreamPractice {
                           || (p.getSex() == Person.Sex.WOMAN && p.getAge() <= femaleToAge))
                 .toList();
     }
+
     /**
      * Given a List of `Person` instances (having `name`, `age`, `sex` and `cats` fields,
      * and each `Cat` having a `name` and `age`),
